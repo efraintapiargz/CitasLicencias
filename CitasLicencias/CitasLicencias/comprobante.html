@@ -20,6 +20,33 @@
             document.getElementById('fecha-cita').textContent = `${fechaCita} a las ${horaCita}`;
             document.getElementById('numero-comprobante').textContent = numeroComprobante;
         }
+
+        function modificarCita() {
+            const nuevaFecha = prompt("Ingrese la nueva fecha de la cita (YYYY-MM-DD):", localStorage.getItem('fechaCita'));
+            const nuevaHora = prompt("Ingrese la nueva hora de la cita (HH:MM):", localStorage.getItem('horaCita'));
+
+            if (nuevaFecha && nuevaHora) {
+                localStorage.setItem('fechaCita', nuevaFecha);
+                localStorage.setItem('horaCita', nuevaHora);
+                alert("La cita ha sido modificada.");
+                mostrarComprobante();
+            } else {
+                alert("Modificación cancelada.");
+            }
+        }
+
+        function cancelarCita() {
+            if (confirm("¿Estás seguro de que deseas cancelar esta cita? Esta acción no se puede deshacer.")) {
+                localStorage.removeItem('nombre');
+                localStorage.removeItem('email');
+                localStorage.removeItem('telefono');
+                localStorage.removeItem('fechaCita');
+                localStorage.removeItem('horaCita');
+                localStorage.removeItem('numeroComprobante');
+                alert("La cita ha sido cancelada.");
+                window.location.href = "index.html"; // Redirect to homepage
+            }
+        }
     </script>
 </head>
 <body onload="mostrarComprobante()">
@@ -34,6 +61,8 @@
             <p><strong>Número de Comprobante:</strong> <span id="numero-comprobante"></span></p>
         </div>
         <button onclick="window.print()" class="btn">Imprimir Comprobante</button>
+        <button onclick="modificarCita()" class="btn">Modificar Cita</button>
+        <button onclick="cancelarCita()" class="btn">Cancelar Cita</button>
         <a href="index.html" class="btn">Ir al inicio</a>
     </div>
 </body>
