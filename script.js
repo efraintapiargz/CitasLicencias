@@ -1,5 +1,7 @@
 // scripts.js
 
+//cOMMENT
+
 // Función para guardar datos del formulario en localStorage
 function guardarDatosFormulario() {
     const nombre = document.getElementById("nombre").value;
